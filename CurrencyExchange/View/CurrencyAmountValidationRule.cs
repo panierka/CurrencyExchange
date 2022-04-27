@@ -16,22 +16,22 @@ namespace CurrencyExchange.View
 
             if(!decimal.TryParse(text, NumberStyles.AllowDecimalPoint, cultureInfo, out decimal x))
             {
-                return new ValidationResult(false, "Niepoprawne znaki");
+                return new ValidationResult(false, "Invalid characters");
             }
 
             if (x < 0)
             {
-                return new ValidationResult(false, "Wartość nie może być ujemna");
+                return new ValidationResult(false, "Amount of currency must not be lesser than 0");
             }
 
             if (x % 0.01m != 0)
             {
-                return new ValidationResult(false, "Nie istnieją aż takie grosze");
+                return new ValidationResult(false, "...");
             }
 
             if (text.Last() == '.')
             {
-                return new ValidationResult(false, "Nie możesz zakończyć liczby przecinkiem");
+                return new ValidationResult(false, "...");
             }
 
             return ValidationResult.ValidResult;

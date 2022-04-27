@@ -21,7 +21,7 @@ namespace CurrencyExchange.Model
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Nie udało się uzyskać odpowiedzi");
+                throw new Exception("Failed to get response");
             }
 
             var json = await response.Content.ReadAsStringAsync();

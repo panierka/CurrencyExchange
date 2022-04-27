@@ -78,7 +78,7 @@ namespace CurrencyExchange.ViewModel
             }
             catch (Exception)
             {
-                MessageBox.Show($"Błąd przy łączeniu z API CoinGecko.");
+                MessageBox.Show($"Failed to connect to the API. Shutting down");
                 Application.Current.Shutdown();
             }
         }

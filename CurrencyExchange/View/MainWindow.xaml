@@ -24,7 +24,7 @@
             VerticalAlignment="Center"
             Grid.Column="0">
 
-            <Label Content="Ilość waluty, którą chcesz konwertować:"/>
+            <Label Content="Amount of currency:"/>
             <TextBox 
                 Height="100"
                 VerticalContentAlignment="Center"
@@ -39,7 +39,7 @@
                 </TextBox.Text>
             </TextBox>
 
-                <Label Content="Waluta, którą chcesz konwertować:"/>
+                <Label Content="From:"/>
             <ComboBox
                 SelectedItem="{Binding CurrentCurrency, Mode=OneWayToSource}"
                 ItemsSource="{Binding CurrencyData.Rates.Values}">
@@ -56,14 +56,14 @@
             VerticalAlignment="Center"
             Grid.Column="1">
 
-            <Label Content="Oto ilość waluty, na którą konwertujesz:"/>
+            <Label Content="Amount of currency after conversion:"/>
             <TextBox 
                 Height="100"
                 Text="{Binding AmountOfTargetCurrency, Mode=OneWay}"
                 IsReadOnly="True"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"/>
-            <Label Content="Waluta, na którą chcesz konwertować:"/>
+            <Label Content="To:"/>
             <ComboBox
                 SelectedItem="{Binding CurrentTargetCurrency, Mode=OneWayToSource}"
                 ItemsSource="{Binding CurrencyData.Rates.Values}">
