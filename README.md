@@ -1,6 +1,6 @@
 # CurrencyExchange
 
-Simple WPF app for currency conversion, built upon functionalities of CoinGecko API. I gave it some basic pseudo-modern UI.
+Simple WPF app for currency conversion, built upon functionalities of CoinGecko API. I used it as a basis for experimenting with pseudo-modern WPF UI for the first time.
 
 ![image](https://user-images.githubusercontent.com/72386943/165854285-6a6eecbe-4488-4485-926a-2d0f12c5c94d.png)
 *Light mode UI*
