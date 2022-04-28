@@ -11,7 +11,7 @@ namespace CurrencyExchange.ViewModel.Base
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged(params string[] names)
+        protected void OnPropertyChanged(params string[] names)
         {
             foreach(var name in names)
             {

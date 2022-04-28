@@ -11,7 +11,7 @@
         Background="#001219"
         WindowStartupLocation="CenterScreen"
         Title="Currency Exchange" Height="700" Width="1000">
-    
+
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
@@ -26,8 +26,8 @@
         <Rectangle>
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="WhiteSmoke" Offset="0" />
-                    <GradientStop Color="HotPink" Offset="1.5" />
+                    <GradientStop Color="{Binding ViewThemeProvider.Gradient1Brush}" Offset="0" />
+                    <GradientStop Color="{Binding ViewThemeProvider.Gradient2Brush}" Offset="1.5" />
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
@@ -40,24 +40,42 @@
             </Grid.RowDefinitions>
 
             <Border 
-                Background="White" 
+                Background="{Binding ViewThemeProvider.BackgroundBrush}" 
                 CornerRadius="10"
                 VerticalAlignment="Bottom"
-                Height="100" Width="500">
+                Height="100" Width="480" Margin="50,0,450,0">
                 <TextBlock
                 Text="Currency Exchange"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 FontSize="32"
                 FontFamily="{StaticResource Kreon}"
-                Foreground="#2C3E50">
+                Foreground="{Binding ViewThemeProvider.FontBrush}">
                 </TextBlock>
             </Border>
+
+            <Button 
+                Background="{Binding ViewThemeProvider.BackgroundBrush}" 
+                VerticalAlignment="Bottom"
+                Height="100" Width="100" Margin="800,0,50,0"
+                BorderThickness="0"
+                FontFamily="{StaticResource Kreon}"
+                Foreground="{Binding ViewThemeProvider.FontBrush}"
+                FontSize="18"
+                Content="{Binding ViewThemeProvider.ThemeName}"
+                Command="{Binding SwapTheme}">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
             <Border
                 Margin="50"
                 Grid.Row="2"
-                Background="White" 
+                Background="{Binding ViewThemeProvider.BackgroundBrush}" 
                 CornerRadius="10"
                 VerticalAlignment="Top"
                 Height="300">
@@ -65,6 +83,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="300"/>
                         <ColumnDefinition Width="450"/>
                     </Grid.ColumnDefinitions>
 
@@ -77,14 +96,14 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Margin="100, 40, 20, 0"
-                        Foreground="#2C3E50"
+                        Foreground="{Binding ViewThemeProvider.FontBrush}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         Width="300"
                         VerticalContentAlignment="Center"
                         HorizontalContentAlignment="Right"
                         BorderBrush="Transparent"
-                        Background="#ECF0F1"
+                        Background="{Binding ViewThemeProvider.BoxBrush}"
                         FontSize="54"
                         FontFamily="{StaticResource Kreon}">
 
@@ -97,7 +116,7 @@
                     </TextBox>
 
                     <ComboBox
-                        Margin="0, 40, 160, 0"
+                        Margin="0, 40, 0, 0"
                         Grid.Row="0"
                         Grid.Column="1"
                         Height="70"
@@ -117,21 +136,22 @@
                         Grid.Row="1"
                         Grid.Column="0"
                         Margin="100, 0, 20, 40"
-                        Foreground="#2C3E50"
+                        Foreground="{Binding ViewThemeProvider.FontBrush}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
-                        Width="300"
+                        Width="300"                      
                         VerticalContentAlignment="Center"
                         HorizontalContentAlignment="Right"
                         FontSize="54"
                         BorderThickness="0"
+                        Background="{Binding ViewThemeProvider.BackgroundBrush}"
                         FontFamily="{StaticResource Kreon}"
                         Text="{Binding AmountOfTargetCurrency, Mode=OneWay}"
                         IsReadOnly="True">
                     </TextBox>
 
                     <ComboBox
-                        Margin="0, 0, 160, 40"
+                        Margin="0, 0, 0, 40"
                         Grid.Row="1"
                         Grid.Column="1"
                         Height="70"

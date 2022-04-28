@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using CurrencyExchange.View.AppThemes;
+using CurrencyExchange.ViewModel.Base;
 
 namespace CurrencyExchange.ViewModel
 {
@@ -16,6 +19,9 @@ namespace CurrencyExchange.ViewModel
         private Currency _currentTargetCurrency;
         private decimal _amountOfCurrency;
 
+        private ICommand _swapTheme;
+
+        public IViewThemeProvider ViewThemeProvider { get; private set; } = new BasicViewThemeProvider();
 
         public CurrencyExchangeData CurrencyData 
         { 
@@ -68,6 +74,11 @@ namespace CurrencyExchange.ViewModel
 
                 return decimal.Round(AmountOfCurrency * CurrentTargetCurrency.Value / CurrentCurrency.Value, 2, MidpointRounding.ToNegativeInfinity);
             }
+        }
+
+        public ICommand SwapTheme
+        {
+            get => _swapTheme ??= new RelayCommand(null, _ => ViewThemeProvider.ChangeViewTheme());
         }
 
         public MainViewModel()
