@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\Kreon-Regular.ttf" />
+    <None Remove="Fonts\OpenSans-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\Kreon-Regular.ttf" />
+    <Resource Include="Fonts\OpenSans-Regular.ttf" />
   </ItemGroup>
 
 </Project>

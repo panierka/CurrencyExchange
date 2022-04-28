@@ -8,71 +8,146 @@
         xmlns:v="clr-namespace:CurrencyExchange.View"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Currency Exchange" Height="400" Width="700">
+        Background="#001219"
+        WindowStartupLocation="CenterScreen"
+        Title="Currency Exchange" Height="700" Width="1000">
     
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
+
+    <Window.Resources>
+        <FontFamily x:Key="Kreon">
+            /Fonts/#Kreon
+        </FontFamily>
+    </Window.Resources>
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="WhiteSmoke" Offset="0" />
+                    <GradientStop Color="HotPink" Offset="1.5" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
 
-        <StackPanel
-            Margin="20, 20, 20, 20"
-            VerticalAlignment="Center"
-            Grid.Column="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-            <Label Content="Amount of currency:"/>
-            <TextBox 
-                Height="100"
-                VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center">
-                <TextBox.Text>
-                    <Binding Path="AmountOfCurrency" 
+            <Border 
+                Background="White" 
+                CornerRadius="10"
+                VerticalAlignment="Bottom"
+                Height="100" Width="500">
+                <TextBlock
+                Text="Currency Exchange"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="32"
+                FontFamily="{StaticResource Kreon}"
+                Foreground="#2C3E50">
+                </TextBlock>
+            </Border>
+
+            <Border
+                Margin="50"
+                Grid.Row="2"
+                Background="White" 
+                CornerRadius="10"
+                VerticalAlignment="Top"
+                Height="300">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="450"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="100, 40, 20, 0"
+                        Foreground="#2C3E50"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Width="300"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Right"
+                        BorderBrush="Transparent"
+                        Background="#ECF0F1"
+                        FontSize="54"
+                        FontFamily="{StaticResource Kreon}">
+
+                        <Binding Path="AmountOfCurrency" 
                              UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <v:CurrencyAmountValidationRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
+                            <Binding.ValidationRules>
+                                <v:CurrencyAmountValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
 
-                <Label Content="From:"/>
-            <ComboBox
-                SelectedItem="{Binding CurrentCurrency, Mode=OneWayToSource}"
-                ItemsSource="{Binding CurrencyData.Rates.Values}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Display}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
+                    <ComboBox
+                        Margin="0, 40, 160, 0"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Height="70"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        FontFamily="{StaticResource Kreon}"
+                        SelectedItem="{Binding CurrentCurrency, Mode=OneWayToSource}"
+                        ItemsSource="{Binding CurrencyData.Rates.Values}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Display}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
-        <StackPanel
-            Margin="20, 20, 20, 20"
-            VerticalAlignment="Center"
-            Grid.Column="1">
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="100, 0, 20, 40"
+                        Foreground="#2C3E50"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Width="300"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Right"
+                        FontSize="54"
+                        BorderThickness="0"
+                        FontFamily="{StaticResource Kreon}"
+                        Text="{Binding AmountOfTargetCurrency, Mode=OneWay}"
+                        IsReadOnly="True">
+                    </TextBox>
 
-            <Label Content="Amount of currency after conversion:"/>
-            <TextBox 
-                Height="100"
-                Text="{Binding AmountOfTargetCurrency, Mode=OneWay}"
-                IsReadOnly="True"
-                VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center"/>
-            <Label Content="To:"/>
-            <ComboBox
-                SelectedItem="{Binding CurrentTargetCurrency, Mode=OneWayToSource}"
-                ItemsSource="{Binding CurrencyData.Rates.Values}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Display}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
+                    <ComboBox
+                        Margin="0, 0, 160, 40"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Height="70"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        FontFamily="{StaticResource Kreon}"
+                        SelectedItem="{Binding CurrentTargetCurrency, Mode=OneWayToSource}"
+                        ItemsSource="{Binding CurrencyData.Rates.Values}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Display}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
